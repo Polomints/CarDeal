@@ -1,0 +1,328 @@
+
+					
+					<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Part Finder</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+
+<!------------- javascript for image scroller ------------------------->
+<script language="javascript" type="text/javascript" src="script/mootools-1.2-core.js"></script>
+<script language="javascript" type="text/javascript" src="script/mootools-1.2-more.js"></script>
+<script language="javascript" type="text/javascript" src="script/SlideItMoo.js"></script>
+<script language="javascript" type="text/javascript">
+window.addEvent('domready', function(){
+
+					
+	/* banner rotator example */
+	new SlideItMoo({itemsVisible:1, // the number of thumbnails that are visible
+					showControls:0, // show the next-previous buttons
+					autoSlide:2500, // insert interval in milliseconds
+					currentElement: 0, // the current element. starts from 0. If you want to start the display with a specific thumbnail, change this
+					transition: Fx.Transitions.Bounce.easeOut,
+					thumbsContainer: 'banners',
+					elementScrolled: 'banner_container',
+					overallContainer: 'banners_container'});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--JAVASCRIPT FOR SEARCHBOX,MYSQL ON HOME PAGE --->
+<script type="text/javascript">
+function showUser(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","getuser.php?q="+str,true);
+xmlhttp.send();
+}
+</script>
+
+
+
+
+<script type="text/javascript">
+function showResult(str)
+{
+if (str.length==0)
+  {
+  document.getElementById("livesearch").innerHTML="";
+  document.getElementById("livesearch").style.border="0px";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+    document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+xmlhttp.open("GET","livesearch.php?q="+str,true);
+xmlhttp.send();
+}
+</script>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+
+
+</head>
+<body>
+
+<div style="margin-left:205px;margin-top:10px;">
+        <ul id="menu">
+            <li class="logo">
+                <img style="float:left;" alt="" src="images/menu_left.png"/>
+               
+            </li>
+            <li><a href="index.html">Home</a>
+            </li>
+			</li>
+            <li><a href="index2.html">View cars</a>
+            </li>
+			</li>
+            <li><a href="add.html">Add Car</a>
+            </li>
+            <li><a href="#">Gallery</a>
+                <ul id="help">
+                    <li>
+                        <img class="corner_inset_left" alt="" src="images/corner_inset_left.png"/>
+                        <a href="gallery.html">View</a>
+                        <img class="corner_inset_right" alt="" src="images/corner_inset_right.png"/>
+                    </li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">More</a></li>
+                    <li class="last">
+                        <img class="corner_left" alt="" src="images/corner_left.png"/>
+                        <img class="middle" alt="" src="images/dot.gif"/>
+                        <img class="corner_right" alt="" src="images/corner_right.png"/>
+                    </li>
+					
+					
+					
+					
+                </ul>
+            </li>
+            <li class="searchContainer">
+                <div>
+                <input type="text" id="searchField" />
+                <img src="images/magnifier.png" alt="Search" onclick="alert('You clicked on search button')" /></div>
+               
+            </li>
+        </ul>
+        <img style="float:left;" alt="" src="images/menu_right.png"/>
+    </div>
+
+
+	<div id="logo">
+	</div>
+	<hr />
+	<!-- end #logo -->
+	<div id="splash">
+		<div class="col1"><img src="images/part.png" width="660" height="300" alt="" /></div>
+		<div class="col2">
+			<blockquote>&#8220;Any Part Any Time Any Where only at PartFinder.ie&#8221;</blockquote>
+		</div>
+	</div>
+	
+	<!-- end #header -->
+	<!-- end #header-wrapper -->
+	<div id="page">
+		<div id="content">
+		  <div class="post">
+				<div class="entry">
+					<p>
+					
+					
+					
+					
+					
+					
+					<fieldset style="width:90%">
+						<legend>View auction cars below.</legend>
+
+						
+						
+						
+						
+						
+						
+						
+	<?php
+
+$connect = mysql_connect("mysql5.000webhost.com", "a9728313_list", "aaaaaa03") or
+
+die ("Hey loser, check your server connection.");
+
+mysql_select_db("a9728313_listing");
+
+$quey1="select * from list";
+
+$result=mysql_query($quey1) or die(mysql_error());
+
+?>
+
+<table width="100%" border=1 style="background-color:#fff;" >
+
+
+<tr>
+
+<th>Car Model</th>
+
+<th>Car Engine</th>
+
+<th>Colour</th>
+
+</tr>
+
+<?php
+
+while($row=mysql_fetch_array($result)){
+
+echo "</td><td>";
+
+echo $row['moviename'];
+
+echo "</td><td>";
+
+echo $row['yourname'];
+
+echo "</td><td>";
+
+echo $row['Gender'];
+
+echo "</td></tr>";
+
+}
+
+echo "</table>";
+
+?>		
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+	</fieldset>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					</p>
+			</div>
+		  </div>
+		
+		</div><!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>	
+					
+					<p>  
+
+					
+					
+					<p>
+					
+					Please select which manufacturer you would like to view ( if you wish to view all cars which are up for auction select "View All" )
+</p></br>
+					<p><select>
+  <option>View All</option>
+  <option>Saab</option>
+  <option>Mercedes</option>
+  <option>Audi</option>
+</select>
+ 
+					
+					</p>
+					
+					
+					
+					
+					
+					
+
+
+			</p>
+					
+			</li>
+			
+					</ul>
+					</div>
+					
+				
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>Copyright (c) Paul</p>
+	</div>
+	<!-- end #footer -->
+</body>
+</html>
+
+		

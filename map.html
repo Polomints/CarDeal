@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Part Finder</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<!--Load up jQuery Library-->
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="json-tooltip.js"></script>
+
+
+
+<!------------- javascript for image scroller ------------------------->
+<script language="javascript" type="text/javascript" src="script/mootools-1.2-core.js"></script>
+<script language="javascript" type="text/javascript" src="script/mootools-1.2-more.js"></script>
+<script language="javascript" type="text/javascript" src="script/SlideItMoo.js"></script>
+<script language="javascript" type="text/javascript">
+
+
+
+
+
+
+
+window.addEvent('domready', function(){
+
+					
+	/* banner rotator example */
+	new SlideItMoo({itemsVisible:1, // the number of thumbnails that are visible
+					showControls:0, // show the next-previous buttons
+					autoSlide:2500, // insert interval in milliseconds
+					currentElement: 0, // the current element. starts from 0. If you want to start the display with a specific thumbnail, change this
+					transition: Fx.Transitions.Bounce.easeOut,
+					thumbsContainer: 'banners',
+					elementScrolled: 'banner_container',
+					overallContainer: 'banners_container'});
+});
+</script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+<div style="margin-left:205px;margin-top:10px;">
+        <ul id="menu">
+            <li class="logo">
+                <img style="float:left;" alt="" src="images/menu_left.png"/>
+               
+            </li>
+            <li><a href="index.html">Home</a>
+            </li>
+			</li>
+            <li><a href="index2.html">View cars</a>
+            </li>
+			</li>
+            <li><a href="#">Login</a>
+            </li>
+            <li><a href="#">Help</a>
+                <ul id="help">
+                    <li>
+                        <img class="corner_inset_left" alt="" src="images/corner_inset_left.png"/>
+                        <a href="#">General help</a>
+                        <img class="corner_inset_right" alt="" src="images/corner_inset_right.png"/>
+                    </li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li class="last">
+                        <img class="corner_left" alt="" src="images/corner_left.png"/>
+                        <img class="middle" alt="" src="images/dot.gif"/>
+                        <img class="corner_right" alt="" src="images/corner_right.png"/>
+                    </li>
+					
+					
+					
+					
+                </ul>
+            </li>
+            <li class="searchContainer">
+                <div>
+                <input type="text" id="searchField" />
+                <img src="images/magnifier.png" alt="Search" onclick="alert('You clicked on search button')" /></div>
+               
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+            </li>
+        </ul>
+        <img style="float:left;" alt="" src="images/menu_right.png"/>
+    </div>
+
+
+	<div id="logo">
+	</div>
+	<hr />
+	<!-- end #logo -->
+	<div id="splash">
+		<div id="wrapper">
+
+			<div id="banner">
+					<h1>Go On</h1>
+					<p>Hover over a link below</p>
+			</div>
+
+			<p>The link in this sentence will <a href="#" class="tooltip" rel="0">display a tooltip</a> on hover.</p>
+
+			<p>If you're feeling adventurous, you could always give<a href="#" class="tooltip" rel="1">this link a try</a> too!</p>
+
+		</div>
+	</div>
+	
+	<!-- end #header -->
+	<!-- end #header-wrapper -->
+	<div id="page">
+		<div id="content">
+		  <div class="post">
+				<div class="entry">
+					<p>
+					
+					
+					<fieldset style="width:90%">
+				<legend>Add a car to auction</legend>
+
+				
+				
+				<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+				
+				
+				<p>
+				<label for='formGender'>Select car Manufacturer</label><br/>
+				<select name="formGender">
+					<option value="">Select...</option>
+					<option value="Ford"<? if($varGender=="Ford") echo(" selected=\"selected\"");?>>Ford</option>
+					<option value="Toyota"<? if($varGender=="Toyota") echo(" selected=\"selected\"");?>>Toyota</option>
+					<option value="Nissan"<? if($varGender=="Nissan") echo(" selected=\"selected\"");?>>Nissan</option>
+
+				</select>
+			</p>
+			<p>
+				<label for='formMovie'>Please enter car model:</label><br/>
+				<input type="text" name="formMovie" maxlength="50" size="40" value="<?=$varMovie;?>" />
+			</p>
+			<p>
+				<label for='formName'>Please enter car color:</label><br/>
+				<input type="text" name="formName" maxlength="50" size="40" value="<?=$varName;?>" />
+			</p>
+			
+			<input type="submit" name="formSubmit" value="Submit" />
+		</form>
+				
+				
+				
+				
+		</fieldset>
+					
+					
+					
+					
+					
+					
+			</div>
+		  </div>
+		
+		</div><!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>	<h2>Latest parts for sale</h2>
+					
+					<p>  
+
+					
+					
+					<div id="banners_container">	
+		<div id="banner_container">			
+			<div id="banners">
+				<a href="#" target="_blank"><img src="banners/1.jpg" width="220" height="250" /></a>	
+				<a href="#" target="_blank"><img src="banners/2.jpg" width="220" height="250" /></a>	
+				<a href="#" target="_blank"><img src="banners/3.jpg" width="220" height="250" /></a>					
+			</div>			
+		</div>
+	</div>	
+					
+					
+					
+					
+					
+					
+
+
+			</p>
+					
+			</li>
+			
+					</ul>
+					</div>
+					
+				
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>Copyright (c) 2011 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+	</div>
+	<!-- end #footer -->
+</body>
+</html>

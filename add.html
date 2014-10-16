@@ -1,0 +1,260 @@
+<?php
+	if($_POST['formSubmit'] == "Submit") 
+    {
+		$errorMessage = "";
+		
+		if(empty($_POST['formMovie'])) 
+        {
+			$errorMessage .= "<li>You forgot to enter a movie!</li>";
+		}
+		if(empty($_POST['formName'])) 
+        {
+			$errorMessage .= "<li>You forgot to enter a name!</li>";
+		}
+		if(empty($_POST['formGender'])) 
+        {
+			$errorMessage .= "<li>You forgot to select your Gender!</li>";
+		}
+
+        $varMovie = $_POST['formMovie'];
+		$varName = $_POST['formName'];
+		$varGender = $_POST['formGender'];
+
+		if(empty($errorMessage)) 
+        {
+			$db = mysql_connect("mysql5.000webhost.com","a9728313_list","aaaaaa03");
+			if(!$db) die("Error connecting to MySQL database.");
+			mysql_select_db("a9728313_listing" ,$db);
+
+			$sql = "INSERT INTO list (moviename, yourname, Gender) VALUES (".
+							PrepSQL($varMovie) . ", " .
+							PrepSQL($varName) . ", " .
+							PrepSQL($varGender) . ")";
+			mysql_query($sql);
+			
+			header("Location: index2.html");
+			exit();
+		}
+	}
+            
+    // function: PrepSQL()
+    // use stripslashes and mysql_real_escape_string PHP functions
+    // to sanitize a string for use in an SQL query
+    //
+    // also puts single quotes around the string
+    //
+    function PrepSQL($value)
+    {
+        // Stripslashes
+        if(get_magic_quotes_gpc()) 
+        {
+            $value = stripslashes($value);
+        }
+
+        // Quote
+        $value = "'" . mysql_real_escape_string($value) . "'";
+
+        return($value);
+    }
+?>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Part Finder</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<!------------- javascript for image scroller ------------------------->
+<script language="javascript" type="text/javascript" src="script/mootools-1.2-core.js"></script>
+<script language="javascript" type="text/javascript" src="script/mootools-1.2-more.js"></script>
+<script language="javascript" type="text/javascript" src="script/SlideItMoo.js"></script>
+<script language="javascript" type="text/javascript">
+window.addEvent('domready', function(){
+
+					
+	/* banner rotator example */
+	new SlideItMoo({itemsVisible:1, // the number of thumbnails that are visible
+					showControls:0, // show the next-previous buttons
+					autoSlide:2500, // insert interval in milliseconds
+					currentElement: 0, // the current element. starts from 0. If you want to start the display with a specific thumbnail, change this
+					transition: Fx.Transitions.Bounce.easeOut,
+					thumbsContainer: 'banners',
+					elementScrolled: 'banner_container',
+					overallContainer: 'banners_container'});
+});
+</script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+<div style="margin-left:205px;margin-top:10px;">
+        <ul id="menu">
+            <li class="logo">
+                <img style="float:left;" alt="" src="images/menu_left.png"/>
+               
+            </li>
+            <li><a href="index.html">Home</a>
+            </li>
+			</li>
+            <li><a href="index2.html">View cars</a>
+            </li>
+			</li>
+            <li><a href="add.html">Add Car</a>
+            </li>
+            <li><a href="#">Gallery</a>
+                <ul id="help">
+                    <li>
+                        <img class="corner_inset_left" alt="" src="images/corner_inset_left.png"/>
+                        <a href="gallery.html">View</a>
+                        <img class="corner_inset_right" alt="" src="images/corner_inset_right.png"/>
+                    </li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">More</a></li>
+                    <li class="last">
+                        <img class="corner_left" alt="" src="images/corner_left.png"/>
+                        <img class="middle" alt="" src="images/dot.gif"/>
+                        <img class="corner_right" alt="" src="images/corner_right.png"/>
+                    </li>
+					
+					
+					
+					
+                </ul>
+            </li>
+            <li class="searchContainer">
+                <div>
+                <input type="text" id="searchField" />
+                <img src="images/magnifier.png" alt="Search" onclick="alert('You clicked on search button')" /></div>
+               
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+            </li>
+        </ul>
+        <img style="float:left;" alt="" src="images/menu_right.png"/>
+    </div>
+
+
+	<div id="logo">
+	</div>
+	<hr />
+	<!-- end #logo -->
+	<div id="splash">
+		<div class="col1"><img src="images/part.png" width="660" height="300" alt="" /></div>
+		<div class="col2">
+			<blockquote>&#8220;Any Part Any Time Any Where only at PartFinder.ie&#8221;</blockquote>
+		</div>
+	</div>
+	
+	<!-- end #header -->
+	<!-- end #header-wrapper -->
+	<div id="page">
+		<div id="content">
+		  <div class="post">
+				<div class="entry">
+					<p>
+					
+					
+					<fieldset style="width:90%">
+				<legend>Add a car to auction</legend>
+
+				
+				
+				<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+				
+				
+				<p>
+				<label for='formGender'>Select car Manufacturer</label><br/>
+				<select name="formGender">
+					<option value="">Select...</option>
+					<option value="Ford"<? if($varGender=="Ford") echo(" selected=\"selected\"");?>>Ford</option>
+					<option value="Toyota"<? if($varGender=="Toyota") echo(" selected=\"selected\"");?>>Toyota</option>
+					<option value="Nissan"<? if($varGender=="Nissan") echo(" selected=\"selected\"");?>>Nissan</option>
+
+				</select>
+			</p>
+			<p>
+				<label for='formMovie'>Please enter car model:</label><br/>
+				<input type="text" name="formMovie" maxlength="50" size="40" value="<?=$varMovie;?>" />
+			</p>
+			<p>
+				<label for='formName'>Please enter car color:</label><br/>
+				<input type="text" name="formName" maxlength="50" size="40" value="<?=$varName;?>" />
+			</p>
+			
+			<input type="submit" name="formSubmit" value="Submit" />
+		</form>
+				
+				
+				
+				
+		</fieldset>
+					
+					
+					
+					
+					
+					
+			</div>
+		  </div>
+		
+		</div><!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>	<h2>Latest parts for sale</h2>
+					
+					<p>  
+
+					
+					
+					<div id="banners_container">	
+		<div id="banner_container">			
+			<div id="banners">
+				<a href="#" target="_blank"><img src="banners/1.jpg" width="220" height="250" /></a>	
+				<a href="#" target="_blank"><img src="banners/2.jpg" width="220" height="250" /></a>	
+				<a href="#" target="_blank"><img src="banners/3.jpg" width="220" height="250" /></a>					
+			</div>			
+		</div>
+	</div>	
+					
+					
+					
+					
+					
+					
+
+
+			</p>
+					
+			</li>
+			
+					</ul>
+					</div>
+					
+				
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>Copyright (c) Paul</p>
+	</div>
+	<!-- end #footer -->
+</body>
+</html>
